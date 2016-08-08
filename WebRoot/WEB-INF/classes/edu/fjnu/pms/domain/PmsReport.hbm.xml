@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+
+	<class name="edu.fjnu.pms.domain.PmsReport" table="PMS_REPORT">
+	
+		<id name="reportId" type="java.lang.Integer">
+			<column name="reportId"></column>
+			<generator class="identity"></generator>
+		</id>
+		
+		<property name="todayTask" type="java.lang.String">
+			<column name="todayTask" length="500"></column>
+		</property>
+		<property name="todayQuestion" type="java.lang.String">
+			<column name="todayQuestion" length="500"></column>
+		</property>
+		<property name="plan" type="java.lang.String">
+			<column name="plan" length="500"></column>
+		</property>
+		<property name="remark" type="java.lang.String">
+			<column name="remark" length="500"></column>
+		</property>
+		<property name="modifyTime" type="java.util.Date">
+			<column name="modifyTime"></column>
+		</property>
+		
+		<many-to-one name="pmsUser" class="edu.fjnu.pms.domain.PmsUser">
+			<column name="userId"></column>
+		</many-to-one>
+		
+	</class>
+</hibernate-mapping>

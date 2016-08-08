@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+
+	<class name="edu.fjnu.pms.domain.PmsTask" table="PMS_TASK">
+	
+		<id name="taskId" type="java.lang.Integer">
+			<column name="taskId"></column>
+			<generator class="identity"></generator>
+		</id>
+		
+		<property name="content" type="java.lang.String">
+			<column name="content" length="50"></column>
+		</property>
+		<property name="createTime" type="java.util.Date">
+			<column name="createTime"></column>
+		</property>
+		<property name="taskStart" type="java.util.Date">
+			<column name="taskStart"></column>
+		</property>
+		<property name="taskEnd" type="java.util.Date">
+			<column name="taskEnd"></column>
+		</property>
+		<property name="progress" type="java.lang.String">
+			<column name="progress" length="3"></column>
+		</property>
+		<property name="modifyTime" type="java.util.Date">
+			<column name="modifyTime"></column>
+		</property>
+		<property name="remark" type="java.lang.String">
+			<column name="remark" length="50"></column>
+		</property>
+		<property name="status" type="java.lang.String">
+			<column name="status" length="6"></column>
+		</property>
+		
+		<many-to-one name="pmsUser" class="edu.fjnu.pms.domain.PmsUser">
+			<column name="userId"></column>
+		</many-to-one>
+
+	</class>
+</hibernate-mapping>

@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+
+	<class name="edu.fjnu.pms.domain.PmsUser" table="PMS_USER">
+	
+		<id name="userId" type="java.lang.Integer">
+			<column name="userId"></column>
+			<generator class="identity"></generator>
+		</id>
+		
+		<property name="name" type="java.lang.String">
+			<column name="name" length="10"></column>
+		</property>
+		<property name="account" type="java.lang.String">
+			<column name="account" length="10"></column>
+		</property>
+		<property name="password" type="java.lang.String">
+			<column name="password" length="32"></column>
+		</property>
+		<property name="permission" type="java.lang.Integer">
+			<column name="permission"></column>
+		</property>
+		
+		<set name="pmsTasks" table="PMS_TASK">
+			<key>
+				<column name="userId"></column>
+			</key>
+			<one-to-many class="edu.fjnu.pms.domain.PmsTask"/>
+		</set>
+		
+		<set name="pmsReports" table="PMS_REPORT">
+			<key>
+				<column name="userId"></column>
+			</key>
+			<one-to-many class="edu.fjnu.pms.domain.PmsReport"/>
+		</set>
+
+	</class>
+</hibernate-mapping>

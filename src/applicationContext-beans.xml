@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean id="reportDao" class="edu.fjnu.pms.dao.impl.ReportDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	
+	<bean id="taskDao" class="edu.fjnu.pms.dao.impl.TaskDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	
+	<bean id="userDao" class="edu.fjnu.pms.dao.impl.UserDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	
+	<bean id="reportService" class="edu.fjnu.pms.service.impl.ReportServiceImpl">
+		<property name="reportDao" ref="reportDao"></property>
+	</bean>
+	
+	<bean id="taskService" class="edu.fjnu.pms.service.impl.TaskServiceImpl">
+		<property name="taskDao" ref="taskDao"></property>
+	</bean>
+	
+	<bean id="userService" class="edu.fjnu.pms.service.impl.UserServiceImpl">
+		<property name="userDao" ref="userDao"></property>
+	</bean>
+
+	<bean id="missionAction" class="edu.fjnu.pms.action.MissionAction" scope="prototype">
+		<property name="userService" ref="userService"></property>
+		<property name="taskService" ref="taskService"></property>
+	</bean>
+	
+	<bean id="reportAction" class="edu.fjnu.pms.action.ReportAction" scope="prototype">
+		<property name="reportService" ref="reportService"></property>
+	</bean>
+	
+	<bean id="userAction" class="edu.fjnu.pms.action.UserAction" scope="prototype">
+		<property name="userService" ref="userService"></property>
+	</bean>
+
+</beans>

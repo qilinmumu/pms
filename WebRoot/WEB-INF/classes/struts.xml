@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+	<constant name="struts.devMode" value="true"></constant>
+	<constant name="struts.i18n.encoding" value="UTF-8"></constant>
+	<constant name="struts.custom.i18n.resources" value="pms"></constant>
+	<constant name="struts.enable.DynamicMethodInvocation" value="true"></constant>
+
+	<package name="user" namespace="/user" extends="struts-default">
+		<action name="user" class="userAction">
+			<exception-mapping result="error"
+				exception="edu.fjnu.pms.exception.ApplicationException"></exception-mapping>
+
+			<result name="input" type="dispatcher">/WEB-INF/jsps/login.jsp</result>
+			<result name="success" type="chain">
+				<param name="namespace">/report</param>
+				<param name="actionName">report</param>
+				<param name="method">showReport</param>
+			</result>
+			<result name="error" type="chain">
+				<param name="namespace">/user</param>
+				<param name="actionName">user</param>
+				<param name="method">toLogin</param>
+			</result>
+		</action>
+	</package>
+
+	<package name="report" namespace="/report" extends="struts-default">
+		<action name="report" class="reportAction">
+			<result name="success" type="dispatcher">/WEB-INF/jsps/report/input_report.jsp</result>
+			<result name="showReportPage" type="dispatcher">/WEB-INF/jsps/report/show_report.jsp</result>
+			<result name="showReport" type="chain">
+				<param name="namespace">/report</param>
+				<param name="actionName">report</param>
+				<param name="method">showReport</param>
+			</result>
+
+		</action>
+	</package>
+
+
+	<package name="mission" namespace="/mission" extends="struts-default">
+		<action name="mission" class="missionAction">
+			<result name="showInput" type="dispatcher">/WEB-INF/jsps/mission/input_mission.jsp</result>
+			<result name="input" type="chain">
+				<param name="namespace">/mission</param>
+				<param name="actionName">mission</param>
+				<param name="method">inputMission</param>
+			</result>
+			<result name="showMission" type="dispatcher">/WEB-INF/jsps/mission/show_mission.jsp</result>
+		</action>
+	</package>
+</struts>
